@@ -13,3 +13,7 @@ After graduating, I hope to work in the mortgage and real estate industry in Haw
 ## Portfolio
 
 This portfolio will include projects and work that show my experience in finance, real estate, data analysis, and other skills I develop throughout my coursework. It will also show my growth as I continue learning and gaining experience that will prepare me for my future career.
+
+## Engagements
+
+Portfolio engagements will be added here as I complete projects throughout the course.
