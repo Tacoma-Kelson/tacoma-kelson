@@ -14,6 +14,7 @@ This repository is my professional portfolio. It contains work related to financ
 - Do not make up information, sources, data, or experiences.
 - Keep my writing natural and avoid making it sound overly formal or AI-generated.
 - When possible, explain why a change is being recommended so I can understand it.
+- Keep `prompt-log.md` updated with meaningful AI-assisted work, including what I asked, what was produced, what was wrong, and how it was caught.
 
 ## Writing Preferences
 
