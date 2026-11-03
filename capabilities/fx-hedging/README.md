@@ -2,6 +2,12 @@
 
 This capability models foreign exchange risk for a company with a future foreign-currency receivable or payable. It compares different hedging strategies to show how exchange-rate movements can affect the final U.S. dollar outcome.
 
+## Engagements
+
+| Scenario | Engagement | Exposure |
+|---|---|---|
+| 32 | `seed-genetics` | EUR 7.3 million receivable in 273 days |
+
 ## Model
 
 The model compares:
