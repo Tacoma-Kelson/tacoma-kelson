@@ -10,12 +10,12 @@ All inputs below are indicative placeholders and will be replaced with live mark
 | Named Range | Placeholder Value | Unit | Stage 4 Source |
 |---|---:|---|---|
 | `FC_AMT` | 7,300,000 | EUR | Assigned scenario / confirmed receivable |
-| `S0_in` | TBD | USD per EUR | Current EURUSD spot market quote |
+| `S0_in` | 1.1150 | USD per EUR | ECB EURUSD reference rate, 2026-10-27 |
 | `F0_in` | 1.1756 | USD per EUR | Assigned scenario / updated market quote |
-| `R_USD` | TBD | Annual % | Current USD market interest rate |
-| `R_FC` | TBD | Annual % | Current EUR market interest rate |
-| `K_PUT` | Equal to `S0_in` | USD per EUR | Set at the Stage 4 EURUSD spot rate |
-| `K_CALL` | Equal to `S0_in` | USD per EUR | Set at the Stage 4 EURUSD spot rate |
+| `R_USD` | 3.95% | Annual % | New York Fed SOFR, 2026-10-27 |
+| `R_FC` | 2.440% | Annual % | ECB €STR, 2026-10-27 |
+| `K_PUT` | 1.1150 | USD per EUR | Set equal to `S0_in` placeholder |
+| `K_CALL` | 1.1150 | USD per EUR | Set equal to `S0_in` placeholder |
 | `PREM_PUT` | 0.0224 | USD per EUR | Assigned scenario / updated option quote |
 | `PREM_CALL` | 0.0376 | USD per EUR | Assigned scenario / updated option quote |
 | `T_DAYS` | 273 | Days | Assigned scenario / settlement date |
@@ -25,7 +25,7 @@ All inputs below are indicative placeholders and will be replaced with live mark
 The workbook will use the following tabs:
 
 ### Cover
-Identifies the FX hedging model, the seed-genetics scenario, the purpose of the workbook, and the date of the analysis.
+Identifies the FX hedging model, the seed-genetics scenario, the purpose of the workbook, and the date of the analysis. The Cover will include an author block listing Tacoma Kelson and a data-source block listing the assigned Scenario 32 inputs and the dated market sources used for `S0_in`, `R_USD`, and `R_FC`.
 
 ### Legend / Key
 Explains the workbook formatting and identifies which cells are inputs, formulas, outputs, assumptions, and validation checks.
@@ -98,28 +98,35 @@ The model will calculate the USD outcome for the unhedged position and each hedg
 `Money-Market USD Proceeds = USD Invested Today × (1 + R_USD × T_DAYS / 360)`
 
 ### Put Option Hedge
-1. Calculate the total put premium as `FC_AMT × PREM_PUT`.
+`S_T` represents the EURUSD spot rate at settlement in USD per EUR.
+1. Calculate the total put premium paid upfront today as `FC_AMT × PREM_PUT`. For comparison with proceeds received at settlement, carry the premium forward 273 days using `R_USD`.
+**Put Premium at Settlement:**
+`FC_AMT × PREM_PUT × (1 + R_USD × T_DAYS / 360)`
 2. At settlement, compare the EURUSD spot rate with `K_PUT`.
 3. If the settlement spot rate is below `K_PUT`, exercise the put and value the receivable at `K_PUT`.
 4. If the settlement spot rate is above `K_PUT`, allow the put to expire and convert the receivable at the stronger market spot rate.
 5. Subtract the cost of the put premium when comparing the option with the other strategies.
+**Put Net USD Proceeds at Settlement:**  
+`FC_AMT × MAX(S_T, K_PUT) - [FC_AMT × PREM_PUT × (1 + R_USD × T_DAYS / 360)]`
 
 ### Call Option Participation
 The model will also calculate the payoff of a call option on EUR for comparison and validation purposes.
 
-1. Calculate the total call premium as `FC_AMT × PREM_CALL`.
+1. Calculate the total call premium paid upfront today as `FC_AMT × PREM_CALL`. For comparison with the payoff at settlement, carry the premium forward 273 days using `R_USD`.
+**Call Premium at Settlement:**  
+`FC_AMT × PREM_CALL × (1 + R_USD × T_DAYS / 360)`
 2. At settlement, compare the EURUSD settlement spot rate with `K_CALL`.
 3. The call payoff per EUR is the greater of the settlement spot rate minus `K_CALL` or zero.
 4. Multiply the payoff per EUR by `FC_AMT` to calculate the total call payoff.
 5. Show the call premium separately so the cost of participation can be compared with the payoff.
 
 **Formulas:**  
-`Call Premium = FC_AMT × PREM_CALL`  
-`Call Payoff = FC_AMT × MAX(Settlement Spot Rate - K_CALL, 0)`
+`Call Premium at Settlement = FC_AMT × PREM_CALL × (1 + R_USD × T_DAYS / 360)`
+`Call Payoff = FC_AMT × MAX(S_T - K_CALL, 0)`
 
 ## 6. Sensitivity Plan
 
-The model will test how each strategy performs as the EURUSD settlement spot rate changes. The sensitivity analysis will range from 5% below `S0_in` to 5% above `S0_in` in 1% increments.
+The model will test how each strategy performs as the EURUSD settlement spot rate changes. The Sensitivity tab will also include a line chart comparing the strategies. The x-axis will show the EURUSD settlement spot rate `S_T` in USD per EUR, and the y-axis will show USD proceeds at settlement. The chart will include separate lines for the unhedged position, forward hedge, money-market hedge, and put option hedge.
 
 The settlement spot-rate scenarios will be:
 
@@ -135,7 +142,7 @@ The settlement spot-rate scenarios will be:
 - 4% above `S0_in`
 - 5% above `S0_in`
 
-For each settlement rate, the model will calculate the USD proceeds for the unhedged position, forward hedge, money-market hedge, and option hedge. The Sensitivity tab will also include a chart comparing the strategies across the full range of settlement rates. This will show the downside protection and upside participation provided by each strategy.
+For each settlement rate, the model will calculate the USD proceeds for the unhedged position, forward hedge, money-market hedge, and option hedge. This will show the downside protection and upside participation provided by each strategy.
 
 ## 7. Validation Rules
 
@@ -151,7 +158,7 @@ The completed workbook must pass the following checks before the results are use
 8. **Sensitivity check:** A weaker euro must reduce unhedged USD proceeds, while a stronger euro must increase unhedged USD proceeds.
 9. **Input check:** Market inputs must be linked to the named ranges rather than hard-coded inside calculation formulas.
 10. **Error check:** The workbook must contain no formula errors such as `#REF!`, `#VALUE!`, `#DIV/0!`, or `#NAME?`.
-11. **Parity check:** Compare the assigned forward rate `F0_in` with the forward rate implied by the spot rate and the USD and EUR interest rates. The model will calculate the implied forward rate using covered interest parity and flag any meaningful difference between the implied rate and `F0_in`.
+11. **Parity check:** Compare the assigned forward rate `F0_in` with the forward rate implied by `S0_in`, `R_USD`, and `R_FC`. The model will flag the parity check if the absolute difference between `F0_in` and the implied forward rate exceeds 0.0010 USD per EUR (10 pips). This tolerance allows for small differences caused by quote timing and rounding while still flagging a meaningful inconsistency in the model inputs.
 12. **Forward vs. money-market parity check:** When the forward rate is consistent with covered interest rate parity, the forward hedge and money-market hedge should produce approximately the same USD proceeds. Any difference beyond normal rounding should be flagged for review.
 
 **Formula:**  
