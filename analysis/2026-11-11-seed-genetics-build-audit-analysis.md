@@ -34,4 +34,18 @@ These flags show that the indicative market inputs are not consistent with cover
 
 The workbook tests 11 settlement exchange rates from 5% below to 5% above the placeholder spot rate in 1% increments.
 
-The chart compares the unhedged position, forward hedge, money-market hedge, and protective put option. The forward and money-market hedges remain fixed across settlement rates. The unhedged position changes with the euro, while the put protects against downside
+The chart compares the unhedged position, forward hedge, money-market hedge, and protective put option. The forward and money-market hedges remain fixed across settlement rates. The unhedged position changes with the euro, while the put protects against downside exchange rate movements and still allows the company to benefit if the euro strengthens.
+
+## 5. Named Range Formula Issue
+
+During my review, I found that the workbook had all 10 required named ranges, but the formulas were still using cell references instead of those names. For example, the forward hedge formula used =Inputs!$B$6*Inputs!$B$8 instead of =FC_AMT*F0_in.
+
+I corrected the formulas to use the named ranges. This makes the workbook easier to understand and meets the assignment requirements. The calculated results stayed the same after the changes.
+
+## 6. Validation Check Issue
+
+During my review, I found that some Validation formulas compared results to fixed numbers instead of using the model inputs. For example, the forward hedge check compared the result to $8,581,880. This would cause the check to fail if the exchange rate or receivable amount changed, even if the calculation was correct.
+
+I fixed these checks by replacing the hardcoded numbers with formulas using named ranges. For example, the forward hedge check now compares the result to FC_AMT*F0_in. This allows the checks to work even when the inputs change.
+
+I also checked that the workbook uses formulas for its calculated values rather than manually entering the answers. The two interest rate parity flags remain because the assigned forward rate differs from the rate calculated using the model's interest rates.
