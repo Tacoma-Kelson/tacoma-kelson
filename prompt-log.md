@@ -43,3 +43,6 @@ Created an Excel workbook comparing the unhedged position, forward hedge, money-
 
 **What was wrong and how it was caught:**  
 During the audit, I found that some sensitivity results displayed as ####### because the columns were too narrow. I widened the columns so the values were visible. I also checked the put option formula to confirm that it used the settlement spot rate, strike price, and future value of the premium correctly. The validation tab flagged a difference between the assigned forward rate and the rate implied by interest rate parity. I kept this flag visible because the market inputs are still unverified placeholders that will need to be reviewed in Stage 4.
+
+**Additional changes:** 
+I needed to change the cell colors to match the assignment requirements. I also struggled a little with formatting the Excel workbook, but I was able to fix the colors and update the legend.
