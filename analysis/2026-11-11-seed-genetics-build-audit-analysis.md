@@ -49,3 +49,5 @@ During my review, I found that some Validation formulas compared results to fixe
 I fixed these checks by replacing the hardcoded numbers with formulas using named ranges. For example, the forward hedge check now compares the result to FC_AMT*F0_in. This allows the checks to work even when the inputs change.
 
 I also checked that the workbook uses formulas for its calculated values rather than manually entering the answers. The two interest rate parity flags remain because the assigned forward rate differs from the rate calculated using the model's interest rates.
+
+To test the updated Validation formulas, I temporarily changed the receivable amount from €7,300,000 to €8,000,000. All nine main validation checks still passed. The two interest rate parity checks remained flagged because of the difference between the assigned forward rate and the calculated rate. This showed that the updated checks can adjust when inputs change. After testing, I changed the receivable amount back to €7,300,000.
