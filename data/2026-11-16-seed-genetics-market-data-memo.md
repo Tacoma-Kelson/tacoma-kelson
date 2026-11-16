@@ -49,7 +49,19 @@ The main limitation is that the SOFR and €STR benchmarks are not actual 273-da
 
 Because of these differences, the results are useful for comparing the hedging strategies in my assignment but should not be treated as executable market prices.
 
-## 4. Conclusion
+## 4. FX Hedging Lab Cross-Check
+
+I compared my Excel workbook against the professor's FX Hedging Lab using the same market inputs.
+
+The forward hedge matched at $8,581,880 and the money-market hedge matched at approximately $8,123,527. The implied forward rate also matched at approximately 1.1128.
+
+The protective put showed a difference of $4,747.54. My workbook calculates the put premium's future value using the USD interest rate and subtracts it from the proceeds at settlement. The lab appears to subtract the premium paid today without adjusting for interest.
+
+I kept my original formula because it accounts for the time value of money. I documented the difference rather than changing the calculation just to match the lab.
+
+The sensitivity analysis also showed that the forward hedge provided the highest USD proceeds across all 11 scenarios from -5% to +5%.
+
+## 5. Conclusion
 
 Based on my updated model, the forward hedge provides the highest USD proceeds at the current spot rate. However, the assigned forward rate is higher than the rate implied by the market inputs, so this advantage may not reflect actual market conditions.
 
