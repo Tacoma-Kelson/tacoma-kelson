@@ -46,3 +46,20 @@ During the audit, I found that some sensitivity results displayed as ####### bec
 
 **Additional changes:** 
 I needed to change the cell colors to match the assignment requirements. I also struggled a little with formatting the Excel workbook, but I was able to fix the colors and update the legend.
+
+## 2026-11-16
+
+**What I asked:**
+Help me complete Stage 4 of my FX hedging project by updating my Excel workbook with market data, checking my formulas, comparing my results with the professor's FX Hedging Lab, and documenting my findings.
+
+**What was produced:**
+I updated my Excel workbook using a EUR/USD spot rate of 1.1014, a USD interest rate of 3.82858%, and a EUR interest rate of 2.437%. I also created a market-data memo documenting the sources, assumptions, and updated hedging results. I compared my calculations against the professor's FX Hedging Lab.
+
+**What was wrong and how it was caught:**
+The validation tab showed that the assigned forward rate of 1.1756 did not match the implied forward rate of approximately 1.1128. I kept the flag visible and documented the difference instead of changing the inputs just to make the check pass.
+
+I also found a $4,747.54 difference between my protective put calculation and the professor's lab. My workbook includes the future value of the option premium while the lab appears to subtract the premium paid today. I checked my Excel formulas and documented the difference in my memo.
+
+**Additional changes:**
+I updated the source information and assumptions in my workbook. I also moved my market-data memo into the correct `data` folder on GitHub. The forward and money-market results matched the professor's lab, and the sensitivity analysis showed that the forward hedge had the highest proceeds across all 11 scenarios.
+
