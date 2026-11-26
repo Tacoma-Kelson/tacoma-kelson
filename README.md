@@ -25,8 +25,13 @@ I developed an Excel model comparing forward, money-market, and option hedging s
 **Project deliverables:**
 
 - [FX Hedging Project Overview](capabilities/fx-hedging/README.md)
-- [Excel Financial Model](capabilities/fx-hedging/model.xlsx)
-- [Validation Analysis](analysis/2026-11-25-seed-genetics-validation-analysis.md)
-- [CFO Decision Memo](docs/decisions/2026-11-25-seed-genetics-hedge-decision-memo.md)
+- [Stage 1: Executive Brief](docs/briefs/2026-10-23-seed-genetics-hedge-brief.md)
+- [Stage 2: Model Specification](capabilities/fx-hedging/spec.md)
+- [Stage 3: Excel Financial Model](capabilities/fx-hedging/model.xlsx)
+- [Stage 3: Build and Audit Analysis](analysis/2026-11-11-seed-genetics-build-audit-analysis.md)
+- [Stage 4: Market-Data Memo](data/2026-11-16-seed-genetics-market-data-memo.md)
+- [Stage 5: Validation Analysis](analysis/2026-11-25-seed-genetics-validation-analysis.md)
+- [Stage 5: CFO Decision Memo](docs/decisions/2026-11-25-seed-genetics-hedge-decision-memo.md)
+- [AI Prompt Log](prompt-log.md)
 
 **Status:** Completed November 2026.
