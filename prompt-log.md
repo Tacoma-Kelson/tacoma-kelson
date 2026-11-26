@@ -63,3 +63,23 @@ I also found a $4,747.54 difference between my protective put calculation and th
 **Additional changes:**
 I updated the source information and assumptions in my workbook. I also moved my market-data memo into the correct `data` folder on GitHub. The forward and money-market results matched the professor's lab, and the sensitivity analysis showed that the forward hedge had the highest proceeds across all 11 scenarios.
 
+## 2026-11-25
+
+**What I asked:**
+Help me complete Stage 5 of my FX hedging project by independently validating my Excel model, comparing the results, reviewing my original specification, and preparing a decision memo for the CFO.
+
+**What was produced:**
+I started a separate AI conversation and provided only my Stage 2 specification and Stage 4 market-data memo. I saved the original AI response and compared its calculations with my Excel workbook at -5%, 0%, and +5% changes in the ending spot rate. I also prepared three manual calculation checks for the forward hedge, money-market hedge, and protective put.
+
+I created a validation analysis, specification retrospective, and CFO decision memo. My recommendation was to pursue the forward hedge if the bank could confirm the assigned forward rate.
+
+**What was wrong and how it was caught:**
+The independent AI had to infer that both option strike prices were equal to the updated spot rate because my market-data memo did not explicitly list them. I also realized that including expected results in the market-data memo limited the independence of the AI test.
+
+The interest rate parity discrepancy remained an important concern. Although the forward hedge provided the highest modeled proceeds, I could not assume that the assigned forward rate was available in the actual market. I addressed this by making my recommendation conditional on receiving an executable bank quote.
+
+**Additional changes:**
+I updated my FX hedging README and main portfolio README to reflect the completed project and provide links to the final deliverables.
+
+This project helped me understand that AI can be useful for building and reviewing financial models, but its calculations and assumptions still need to be checked. A model can produce mathematically correct results without necessarily providing a realistic financial recommendation.
+
