@@ -42,15 +42,33 @@ The independent AI reproduced the workbook results at the displayed precision. B
 
 This matches the workbook.
 
-### Money-Market Hedge
+### Money-Market Hedge: Hand Verification
 
-EUR borrowed = 7,300,000 / (1 + 0.02437 × 273/360)
+**Step 1: Borrow EUR today**
 
-USD proceeds = EUR borrowed × 1.1014 × (1 + 0.0382858 × 273/360)
+FC_AMT / (1 + R_FC × T_DAYS / 360)
 
-Final proceeds = approximately $8,123,527.39
+= 7,300,000 / (1 + 0.02437 × 273 / 360)
 
-This matches the workbook.
+≈ EUR 7,167,540
+
+**Step 2: Convert EUR to USD at the spot rate**
+
+EUR borrowed × S0_in
+
+= 7,167,540 × 1.1014
+
+≈ $7,894,328
+
+**Step 3: Invest USD until settlement**
+
+USD converted × (1 + R_USD × T_DAYS / 360)
+
+= 7,894,328 × (1 + 0.0382858 × 273 / 360)
+
+≈ $8,123,527
+
+The result matches the workbook's money-market hedge proceeds of $8,123,527.39 when rounded to the nearest dollar. Intermediate calculations are rounded for presentation.
 
 ### Protective Put
 
