@@ -16,4 +16,17 @@ This portfolio will include projects and work that show my experience in finance
 
 ## Engagements
 
-Portfolio engagements will be added here as I complete projects throughout the course.
+### FX Hedging: Seed Genetics (Scenario 32)
+
+Completed a five-stage financial modeling project evaluating foreign exchange risk for a company expecting a EUR 7.3 million receivable in 273 days.
+
+I developed an Excel model comparing forward, money-market, and option hedging strategies. I incorporated market data, conducted sensitivity analysis, independently validated the results using AI and manual calculations, and prepared a financial recommendation for the CFO.
+
+**Project deliverables:**
+
+- [FX Hedging Project Overview](capabilities/fx-hedging/README.md)
+- [Excel Financial Model](capabilities/fx-hedging/model.xlsx)
+- [Validation Analysis](analysis/2026-11-25-seed-genetics-validation-analysis.md)
+- [CFO Decision Memo](docs/decisions/2026-11-25-seed-genetics-hedge-decision-memo.md)
+
+**Status:** Completed November 2026.
